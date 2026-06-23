@@ -1,0 +1,44 @@
+name: 'dbt_project_dbt'
+version: '1.0.0'
+
+profile: 'dbt_project_dbt'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:       
+  - "target"
+  - "dbt_packages"
+
+models:
+  dbt_project_dbt:
+
+    staging:
+      +schema: staging
+      +materialized: table
+      +tags: ['staging']
+
+    intermediate:
+      +materialized: ephemeral
+      +tags: ['intermediate']
+
+    marts:
+      +schema: marts
+      +materialized: table
+      +tags: ['marts']
+
+    seeds:
+      +schema: seeds
+      +materialized: table
+      +tags: ['seeds']
+
+
+    snapshots:
+      +schema: snapshots
+      +materialized: snapshot
+      +tags: ['snapshots']
+
